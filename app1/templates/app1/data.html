@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teacher-Student Data</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href=" " />
+</head>
+<body>
+    <table border="5">
+        <tr>
+            <th>s.no.</th>
+            <th>teacher</th>
+            <th>students</th>
+            <th>generate certificate</th>
+        </tr>
+        {% for i in teacher %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.name}}</td>
+            <td>
+                {% for student in i.students.all %}
+                    {{ student.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </td>
+            <td><a href="{% url "generate_certificate" i.id %}">Link</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <script src=""></script>
+</body>
+</html>
